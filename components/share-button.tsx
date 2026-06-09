@@ -10,7 +10,7 @@ import {
 import { Check, Share2 } from "lucide-react";
 
 const INVITE_TEXT =
-  "我用「吵架包赢」一次都没输过，你也来试试 👉 https://argue-winner.app";
+  "我用「吵架必赢」一次都没输过，你也来试试 👉 https://argue-winner.vercel.app/";
 
 export function ShareButton() {
   const [copied, setCopied] = useState(false);

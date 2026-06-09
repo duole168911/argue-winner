@@ -1,0 +1,35 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - heading "吵架必赢" [level=1] [ref=e6]
+        - button "分享给朋友" [ref=e7]:
+          - img
+          - text: 分享给朋友
+      - paragraph [ref=e8]: 吵架吵不过？我能替你一句封喉！输入对方说的话，拖一拖强度滑块，让吵架高手替你回怼。
+      - generic [ref=e10]:
+        - generic [ref=e11]: 试试：
+        - button "你算哪根葱啊" [ref=e12]
+        - button "你嘴怎么这么欠" [ref=e13]
+        - button "你先照照镜子吧" [ref=e14]
+        - button "哪来的优越感" [ref=e15]
+      - generic [ref=e16]:
+        - textbox "对方说：「……」" [ref=e17]: 你嘴怎么这么欠
+        - generic [ref=e19]: 7 / 500
+      - generic [ref=e21]:
+        - generic [ref=e22]:
+          - generic [ref=e23]: 语气强度
+          - generic [ref=e24]:
+            - generic [ref=e25]: 笑死，反手一刀
+            - generic [ref=e26]: ·3
+        - group [ref=e27]:
+          - slider [ref=e32]: "3"
+      - button "开始吵架" [ref=e33]:
+        - img
+        - text: 开始吵架
+      - alert [ref=e44]:
+        - generic [ref=e45]: 回复生成失败，请重试
+        - button "重试" [ref=e46]
+  - button "Open Next.js Dev Tools" [ref=e39] [cursor=pointer]:
+    - img [ref=e40]
+  - alert [ref=e43]

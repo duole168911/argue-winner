@@ -4,6 +4,7 @@ const OPENROUTER_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
 const OPENROUTER_MODEL = "nex-agi/nex-n2-pro:free";
 const APP_REFERER = "https://argue-winner.app";
 const APP_TITLE = "ArgueWinner";
+const UPSTREAM_TIMEOUT_MS = 30_000;
 
 export class OpenRouterHttpError extends Error {
   status: number;
@@ -68,6 +69,7 @@ export async function generateResponses(
       response_format: { type: "json_object" },
       temperature: 0.9,
     }),
+    signal: AbortSignal.timeout(UPSTREAM_TIMEOUT_MS),
   });
 
   if (!response.ok) {

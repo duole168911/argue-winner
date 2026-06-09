@@ -34,14 +34,14 @@ export function ResultCard({ text, index }: ResultCardProps) {
       className="border-0 bg-white/80 shadow-sm backdrop-blur-sm animate-in fade-in slide-in-from-bottom-2"
       style={{ animationDelay: `${index * 100}ms`, animationFillMode: "backwards" }}
     >
-      <CardContent className="flex items-start gap-3 p-4">
+      <CardContent className="flex items-start gap-2.5 p-2.5 sm:p-3">
         <span
-          className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gradient-to-br text-sm font-bold text-white ${BADGE_COLOR[index] ?? BADGE_COLOR[3]}`}
+          className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br text-xs font-bold text-white ${BADGE_COLOR[index] ?? BADGE_COLOR[3]}`}
           aria-hidden
         >
           {index + 1}
         </span>
-        <p className="flex-1 text-base leading-relaxed text-foreground">
+        <p className="flex-1 text-sm leading-snug text-foreground sm:text-base sm:leading-relaxed">
           {text}
         </p>
         <Button

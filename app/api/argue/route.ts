@@ -28,8 +28,8 @@ export async function POST(request: Request): Promise<Response> {
   if (message.length > MAX_INPUT_LENGTH) {
     return jsonError(400, `输入过长（最多 ${MAX_INPUT_LENGTH} 字）`);
   }
-  if (typeof intensity !== "number" || intensity < 1 || intensity > 10) {
-    return jsonError(400, "强度必须在 1-10");
+  if (typeof intensity !== "number" || intensity < 1 || intensity > 5) {
+    return jsonError(400, "强度必须在 1-5");
   }
 
   try {

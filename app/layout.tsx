@@ -8,7 +8,7 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "吵架包赢 — 一键生成犀利回复",
+  title: "吵架必赢 — 一键生成犀利回复",
   description:
     "输入对方说的话，拖一拖强度滑块，立刻得到 3 条犀利回怼。",
 };

@@ -1,19 +1,14 @@
 "use client";
 
 import { Slider } from "@/components/ui/slider";
-import type { IntensityStyle } from "@/lib/argument-types";
 
-const TIER_LABEL: Record<IntensityStyle, { emoji: string; text: string }> = {
-  low: { emoji: "🧊", text: "理性反论" },
-  mid: { emoji: "😏", text: "幽默挖苦" },
-  high: { emoji: "🔥", text: "犀利金句" },
+const LEVEL_LABEL: Record<number, string> = {
+  1: "别急，先讲理",
+  2: "开始有点阴阳了",
+  3: "笑死，反手一刀",
+  4: "不装了，直接怼",
+  5: "别眨眼，封喉暴击",
 };
-
-function tierFor(intensity: number): IntensityStyle {
-  if (intensity <= 3) return "low";
-  if (intensity <= 6) return "mid";
-  return "high";
-}
 
 interface IntensitySliderProps {
   value: number;
@@ -26,20 +21,23 @@ export function IntensitySlider({
   onChange,
   disabled,
 }: IntensitySliderProps) {
-  const tier = TIER_LABEL[tierFor(value)];
+  const label = LEVEL_LABEL[value] ?? LEVEL_LABEL[3];
 
   return (
-    <div className="flex flex-col gap-3">
-      <div className="flex items-center justify-between">
+    <div className="flex flex-col gap-2">
+      <div className="flex items-center justify-between gap-2">
         <span className="text-sm font-medium text-foreground">语气强度</span>
-        <span className="text-2xl font-bold tabular-nums bg-gradient-to-r from-indigo-500 to-pink-500 bg-clip-text text-transparent">
-          {value}
-        </span>
+        <div className="flex items-center gap-1.5 text-sm">
+          <span className="bg-gradient-to-r from-indigo-600 to-pink-600 bg-clip-text font-medium text-transparent">
+            {label}
+          </span>
+          <span className="font-bold tabular-nums text-indigo-600">·{value}</span>
+        </div>
       </div>
       <Slider
         value={[value]}
         min={1}
-        max={10}
+        max={5}
         step={1}
         disabled={disabled}
         onValueChange={(next) => {
@@ -48,14 +46,6 @@ export function IntensitySlider({
         }}
         className="w-full"
       />
-      <div className="flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-indigo-50 to-pink-50 px-3 py-2 text-sm font-medium transition-all">
-        <span className="text-base" aria-hidden>
-          {tier.emoji}
-        </span>
-        <span className="bg-gradient-to-r from-indigo-600 to-pink-600 bg-clip-text text-transparent">
-          {tier.text}
-        </span>
-      </div>
     </div>
   );
 }

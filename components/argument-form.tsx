@@ -14,7 +14,7 @@ const MAX_INPUT_LENGTH = 500;
 
 export function ArgumentForm() {
   const [message, setMessage] = useState("");
-  const [intensity, setIntensity] = useState(5);
+  const [intensity, setIntensity] = useState(3);
   const [isLoading, setIsLoading] = useState(false);
   const [responses, setResponses] = useState<string[] | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -69,34 +69,38 @@ export function ArgumentForm() {
   const showResults = responses !== null && responses.length > 0;
 
   return (
-    <div className="flex w-full flex-col gap-5">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold tracking-tight">
+    <div className="flex h-full min-h-0 w-full flex-col gap-3">
+      <div className="flex shrink-0 items-center justify-between">
+        <h1 className="text-xl font-bold tracking-tight sm:text-2xl">
           <span className="bg-gradient-to-r from-indigo-600 to-pink-600 bg-clip-text text-transparent">
-            吵架包赢
+            吵架必赢
           </span>
         </h1>
         <ShareButton />
       </div>
 
-      <p className="text-sm text-muted-foreground">
-        输入对方说的话，拖一拖强度滑块，让吵架高手替你回怼。
+      <p className="shrink-0 text-xs text-muted-foreground sm:text-sm">
+        吵架吵不过？我能替你一句封喉！输入对方说的话，拖一拖强度滑块，让吵架高手替你回怼。
       </p>
 
-      <ExampleChips onSelect={pickExample} disabled={isLoading} />
+      {!showResults && (
+        <div className="shrink-0 -mx-1">
+          <ExampleChips onSelect={pickExample} disabled={isLoading} />
+        </div>
+      )}
 
-      <div className="flex flex-col gap-2">
+      <div className="flex shrink-0 flex-col gap-1">
         <Textarea
           placeholder="对方说：「……」"
           value={message}
           onChange={(e) => handleMessageChange(e.target.value)}
           disabled={isLoading}
           maxLength={MAX_INPUT_LENGTH}
-          rows={3}
+          rows={2}
           aria-invalid={inputError !== null}
-          className="resize-none border-border/60 bg-white/80 text-base shadow-sm backdrop-blur-sm focus-visible:ring-indigo-200"
+          className="resize-none border-border/60 bg-white/80 text-sm shadow-sm backdrop-blur-sm focus-visible:ring-indigo-200 sm:text-base"
         />
-        <div className="flex items-center justify-between text-xs">
+        <div className="flex items-center justify-between px-1 text-xs">
           <span className="text-destructive">{inputError ?? ""}</span>
           <span className="text-muted-foreground tabular-nums">
             {message.length} / {MAX_INPUT_LENGTH}
@@ -104,7 +108,7 @@ export function ArgumentForm() {
         </div>
       </div>
 
-      <div className="rounded-xl border border-border/40 bg-white/60 p-4 shadow-sm backdrop-blur-sm">
+      <div className="shrink-0 rounded-xl border border-border/40 bg-white/60 p-3 shadow-sm backdrop-blur-sm sm:p-4">
         <IntensitySlider
           value={intensity}
           onChange={setIntensity}
@@ -117,7 +121,7 @@ export function ArgumentForm() {
         onClick={submit}
         disabled={isLoading}
         size="lg"
-        className="h-12 w-full bg-gradient-to-r from-indigo-500 to-pink-500 text-base font-semibold text-white shadow-md transition-all hover:from-indigo-600 hover:to-pink-600 hover:shadow-lg disabled:opacity-70"
+        className="h-10 w-full shrink-0 bg-gradient-to-r from-indigo-500 to-pink-500 text-sm font-semibold text-white shadow-md transition-all hover:from-indigo-600 hover:to-pink-600 hover:shadow-lg disabled:opacity-70 sm:h-12 sm:text-base"
       >
         {isLoading ? (
           <>
@@ -135,7 +139,7 @@ export function ArgumentForm() {
       {errorMessage && (
         <div
           role="alert"
-          className="flex items-center justify-between gap-3 rounded-lg border border-destructive/30 bg-destructive/5 px-4 py-3 text-sm text-destructive"
+          className="flex shrink-0 items-center justify-between gap-3 rounded-lg border border-destructive/30 bg-destructive/5 px-4 py-3 text-sm text-destructive"
         >
           <span>{errorMessage}</span>
           <Button
@@ -152,8 +156,8 @@ export function ArgumentForm() {
       )}
 
       {showResults && (
-        <div className="flex flex-col gap-3">
-          <h2 className="text-sm font-semibold text-foreground">
+        <div className="flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto pr-1 sm:gap-3">
+          <h2 className="sticky top-0 -mt-1 bg-gradient-to-b from-white/95 to-white/0 pb-1 text-sm font-semibold text-foreground backdrop-blur-sm">
             给你三条回复（按强度排序）
           </h2>
           {responses.map((text, index) => (

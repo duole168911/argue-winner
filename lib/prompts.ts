@@ -7,16 +7,16 @@ const STYLE_GUIDE: Record<IntensityStyle, string> = {
 };
 
 function pickStyleTier(intensity: number): IntensityStyle {
-  if (intensity <= 3) return "low";
-  if (intensity <= 6) return "mid";
+  if (intensity <= 2) return "low";
+  if (intensity <= 3) return "mid";
   return "high";
 }
 
 export function buildSystemPrompt(intensity: number): string {
   const tier = pickStyleTier(intensity);
-  return `你是一位中文吵架高手。用户给你"对方说的话"和"语气强度(1-10)"。
+  return `你是一位中文吵架高手。用户给你"对方说的话"和"语气强度(1-5)"。
 
-【强度档位】${intensity}/10 —— ${STYLE_GUIDE[tier]}
+【强度档位】${intensity}/5 —— ${STYLE_GUIDE[tier]}
 
 【输出要求】
 1. 严格生成 3 条风格侧重点不同的回复（不要三条都一个套路）
